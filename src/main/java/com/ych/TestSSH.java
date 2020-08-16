@@ -3,11 +3,13 @@ package com.ych;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
+import com.ych.utils.DateUtil;
 import com.ych.utils.Examination;
 
 import java.io.*;
 import java.util.regex.Pattern;
 
+import static com.ych.utils.DateUtil.timeStamp2Date;
 import static java.lang.System.out;
 
 /**
@@ -56,6 +58,10 @@ public class TestSSH {
                             //分析可得，输出到本地文件的内容不需要操作者，因此去掉操作者这个字段
                             if(i%3==1){
                                 continue;
+                            }else if(i%3==0){
+                                String date = timeStamp2Date(r[i], "yyyy-MM-dd HH:mm:ss");
+                                //运行输出:date=yyyy-MM-dd HH:mm:ss
+                                System.out.println("date="+date);
                             }else{
                                 out.println(r[i]);
                             }
